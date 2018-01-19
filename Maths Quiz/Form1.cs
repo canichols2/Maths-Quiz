@@ -21,6 +21,7 @@ namespace Maths_Quiz
         int multiplier; 
         int dividend;
         int divisor;
+        System.Media.SoundPlayer startSoundPlayer = new System.Media.SoundPlayer(@"C:\Windows\Media\chord.wav");
 
         int timeLeft;
 
@@ -132,6 +133,8 @@ namespace Maths_Quiz
                 MessageBox.Show("You didn't finish in time.", "Sorry!");
                 sum.Value = addend1 + addend2;
                 difference.Value = minuend - subtrahend;
+                product.Value = multiplicand * multiplier;
+                quotient.Value = dividend / divisor;
                 startButton.Enabled = true;
             }
 
@@ -147,6 +150,46 @@ namespace Maths_Quiz
             {
                 int lengthOfAnswer = answerBox.Value.ToString().Length;
                 answerBox.Select(0, lengthOfAnswer);
+            }
+        }
+
+        private void sum_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown answerBox = sender as NumericUpDown;
+            int answer = addend1 + addend2;
+            if (sum.Text == answer.ToString())
+            {
+                startSoundPlayer.Play();
+            }
+        }
+
+        private void difference_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown answerBox = sender as NumericUpDown;
+            int answer = minuend - subtrahend;
+            if (difference.Text == answer.ToString())
+            {
+                startSoundPlayer.Play();
+            }
+        }
+
+        private void product_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown answerBox = sender as NumericUpDown;
+            int answer = multiplicand * multiplier;
+            if (product.Text == answer.ToString())
+            {
+                startSoundPlayer.Play();
+            }
+        }
+
+        private void quotient_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown answerBox = sender as NumericUpDown;
+            int answer = dividend / divisor;
+            if (quotient.Text == answer.ToString())
+            {
+                startSoundPlayer.Play();
             }
         }
     }
